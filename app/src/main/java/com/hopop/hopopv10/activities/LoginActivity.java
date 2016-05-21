@@ -92,6 +92,8 @@ public class LoginActivity extends AppCompatActivity {
         });
     }
 
+
+
     //checking field are empty
     private boolean CheckFieldValidation(){
 
