@@ -18,6 +18,7 @@ import android.widget.Button;
 import android.widget.TextView;
 
 import com.afollestad.materialdialogs.MaterialDialog;
+import com.hopop.hopop.login.activity.LoginActivity;
 
 public class PaymentActivty extends AppCompatActivity {
 

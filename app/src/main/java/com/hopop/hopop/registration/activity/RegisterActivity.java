@@ -1,4 +1,4 @@
-package com.hopop.hopop.activities;
+package com.hopop.hopop.registration.activity;
 
 import android.content.pm.ActivityInfo;
 import android.content.res.Configuration;
@@ -16,6 +16,8 @@ import android.widget.ImageButton;
 import android.widget.Toast;
 import android.content.Intent;
 
+import com.hopop.hopop.activities.R;
+import com.hopop.hopop.activities.SearchActivity;
 import com.hopop.hopop.communicators.CommunicatorClass;
 import com.hopop.hopop.communicators.builder.RegisterUser;
 import com.hopop.hopop.response.Registerresponse;

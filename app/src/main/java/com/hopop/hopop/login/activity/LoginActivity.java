@@ -1,4 +1,4 @@
-package com.hopop.hopop.activities;
+package com.hopop.hopop.login.activity;
 
 import android.content.Intent;
 import android.content.pm.ActivityInfo;
@@ -13,6 +13,9 @@ import android.widget.EditText;
 import android.widget.Toast;
 import android.widget.Button;
 import com.facebook.stetho.Stetho;
+import com.hopop.hopop.activities.R;
+import com.hopop.hopop.registration.activity.RegisterActivity;
+import com.hopop.hopop.activities.SearchActivity;
 import com.hopop.hopop.communicators.CommunicatorClass;
 import com.hopop.hopop.communicators.builder.LoginUser;
 import com.hopop.hopop.response.Registerresponse;

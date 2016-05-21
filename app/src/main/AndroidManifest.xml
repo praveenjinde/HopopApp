@@ -22,7 +22,7 @@
             </intent-filter>
         </activity>-->
         <activity
-            android:name="com.hopop.hopop.activities.LoginActivity"
+            android:name="com.hopop.hopop.login.activity.LoginActivity"
             android:label="@string/app_name"
             android:theme="@style/AppTheme.NoActionBar">
             <intent-filter>
@@ -32,7 +32,7 @@
             </intent-filter>
         </activity>
         <activity
-        android:name="com.hopop.hopop.activities.RegisterActivity"
+        android:name="com.hopop.hopop.registration.activity.RegisterActivity"
         android:label="SignUP"
         android:theme="@style/AppTheme.NoActionBar" />
         <activity
