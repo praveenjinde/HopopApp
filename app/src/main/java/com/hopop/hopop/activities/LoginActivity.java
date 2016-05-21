@@ -1,4 +1,4 @@
-package com.hopop.hopopv10.activities;
+package com.hopop.hopop.activities;
 
 import android.content.Intent;
 import android.content.pm.ActivityInfo;
@@ -13,17 +13,13 @@ import android.widget.EditText;
 import android.widget.Toast;
 import android.widget.Button;
 import com.facebook.stetho.Stetho;
-import com.hopop.hopopv10.communicators.CommunicatorClass;
-import com.hopop.hopopv10.communicators.builder.LoginUser;
-import com.hopop.hopopv10.response.Registerresponse;
+import com.hopop.hopop.communicators.CommunicatorClass;
+import com.hopop.hopop.communicators.builder.LoginUser;
+import com.hopop.hopop.response.Registerresponse;
 
-import android.view.View.OnClickListener;
-
-import butterknife.OnClick;
 import retrofit2.Call;
 import retrofit2.Callback;
 import retrofit2.Response;
-import retrofit2.http.Body;
 
 
 public class LoginActivity extends AppCompatActivity {
@@ -95,19 +91,19 @@ public class LoginActivity extends AppCompatActivity {
 
 
     //checking field are empty
-    private boolean CheckFieldValidation(){
+    private boolean checkFieldValidation(){
 
         boolean valid=true;
-        String Mobile = mobile.getText().toString();
-        String Password = pass.getText().toString();
+        String mobileValidation = mobile.getText().toString();
+        String passwordValidation = pass.getText().toString();
 
-        if (Mobile.length() == 0) {
+        if (mobile.length() == 0) {
             mobile.requestFocus();
             mobile.setError("FIELD CANNOT BE EMPTY");
-        } else if (!Mobile.matches("^(?:(?:\\+|0{0,2})91(\\s*[\\-]\\s*)?|[0]?)?[789]\\d{9}$")) {
+        } else if (!mobileValidation.matches("^(?:(?:\\+|0{0,2})91(\\s*[\\-]\\s*)?|[0]?)?[789]\\d{9}$")) {
             mobile.requestFocus();
             mobile.setError("ENTER Valid Mobile Number");
-        } else if (Password.length() == 0) {
+        } else if (passwordValidation.length() == 0) {
             pass.requestFocus();
             pass.setError("FIELD CANNOT BE EMPTY");
         }

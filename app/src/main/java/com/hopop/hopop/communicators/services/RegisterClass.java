@@ -1,8 +1,8 @@
-package com.hopop.hopopv10.communicators.services;
+package com.hopop.hopop.communicators.services;
 
-import com.hopop.hopopv10.communicators.builder.LoginUser;
-import com.hopop.hopopv10.communicators.builder.RegisterUser;
-import com.hopop.hopopv10.response.Registerresponse;
+import com.hopop.hopop.communicators.builder.LoginUser;
+import com.hopop.hopop.communicators.builder.RegisterUser;
+import com.hopop.hopop.response.Registerresponse;
 
 import retrofit2.Call;
 import retrofit2.http.Body;

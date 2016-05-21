@@ -1,4 +1,4 @@
-package com.hopop.hopopv10.communicators.builder;
+package com.hopop.hopop.communicators.builder;
 
 
 public class RegisterUser {

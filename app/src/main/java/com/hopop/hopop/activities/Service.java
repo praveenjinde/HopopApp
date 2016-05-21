@@ -1,6 +1,4 @@
-package com.hopop.hopopv10.activities;
-
-import android.media.Image;
+package com.hopop.hopop.activities;
 
 public class Service {
     String interval, availability, fillingStatus;

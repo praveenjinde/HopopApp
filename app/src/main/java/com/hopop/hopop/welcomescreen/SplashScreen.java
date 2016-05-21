@@ -1,11 +1,11 @@
-package com.hopop.hopopv10.welcomescreen;
+package com.hopop.hopop.welcomescreen;
 
 import android.app.Activity;
 import android.content.Intent;
 import android.os.Bundle;
 
-import com.hopop.hopopv10.activities.LoginActivity;
-import com.hopop.hopopv10.activities.R;
+import com.hopop.hopop.activities.LoginActivity;
+import com.hopop.hopop.activities.R;
 
 public class SplashScreen extends Activity {
 

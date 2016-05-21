@@ -1,8 +1,8 @@
-package com.hopop.hopopv10.communicators;
+package com.hopop.hopop.communicators;
 
 
 import com.facebook.stetho.okhttp3.StethoInterceptor;
-import com.hopop.hopopv10.communicators.services.RegisterClass;
+import com.hopop.hopop.communicators.services.RegisterClass;
 
 import okhttp3.OkHttpClient;
 import okhttp3.logging.HttpLoggingInterceptor;

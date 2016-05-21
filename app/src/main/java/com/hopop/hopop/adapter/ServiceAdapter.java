@@ -1,4 +1,4 @@
-package com.hopop.hopopv10.adapter;
+package com.hopop.hopop.adapter;
 
 import android.content.Context;
 import android.text.Html;
@@ -9,8 +9,8 @@ import android.widget.BaseAdapter;
 import android.widget.ImageView;
 import android.widget.TextView;
 
-import com.hopop.hopopv10.activities.R;
-import com.hopop.hopopv10.activities.Service;
+import com.hopop.hopop.activities.R;
+import com.hopop.hopop.activities.Service;
 
 import java.util.ArrayList;
 import java.util.List;
