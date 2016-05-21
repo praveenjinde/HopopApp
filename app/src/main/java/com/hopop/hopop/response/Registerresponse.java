@@ -1,4 +1,4 @@
-package com.hopop.hopopv10.response;
+package com.hopop.hopop.response;
 
 public class Registerresponse {
     public String success;

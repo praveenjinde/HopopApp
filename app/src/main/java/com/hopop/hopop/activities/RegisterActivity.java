@@ -1,4 +1,4 @@
-package com.hopop.hopopv10.activities;
+package com.hopop.hopop.activities;
 
 import android.content.pm.ActivityInfo;
 import android.content.res.Configuration;
@@ -15,14 +15,11 @@ import android.widget.Button;
 import android.widget.ImageButton;
 import android.widget.Toast;
 import android.content.Intent;
-import android.view.View.OnClickListener;
 
-import com.hopop.hopopv10.communicators.CommunicatorClass;
-import com.hopop.hopopv10.communicators.builder.RegisterUser;
-import com.hopop.hopopv10.response.Registerresponse;
+import com.hopop.hopop.communicators.CommunicatorClass;
+import com.hopop.hopop.communicators.builder.RegisterUser;
+import com.hopop.hopop.response.Registerresponse;
 
-import butterknife.ButterKnife;
-import butterknife.OnClick;
 import retrofit2.Call;
 import retrofit2.Callback;
 import retrofit2.Response;

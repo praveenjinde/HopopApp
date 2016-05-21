@@ -1,4 +1,4 @@
-package com.hopop.hopopv10.activities;
+package com.hopop.hopop.activities;
 
 import android.app.AlertDialog;
 import android.app.Notification;

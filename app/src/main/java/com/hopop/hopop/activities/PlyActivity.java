@@ -1,4 +1,4 @@
-package com.hopop.hopopv10.activities;
+package com.hopop.hopop.activities;
 
 import android.content.pm.ActivityInfo;
 import android.content.res.Configuration;
@@ -6,13 +6,12 @@ import android.os.Bundle;
 import android.view.View;
 import android.support.v7.app.AppCompatActivity;
 import android.support.v7.widget.Toolbar;
-import android.view.MenuItem;
 import android.content.Intent;
 import android.widget.AdapterView;
 import android.widget.ListView;
 import android.widget.TextView;
 
-import com.hopop.hopopv10.adapter.ServiceAdapter;
+import com.hopop.hopop.adapter.ServiceAdapter;
 
 import java.util.ArrayList;
 import java.util.List;
