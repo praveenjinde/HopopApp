@@ -1,0 +1,19 @@
+<resources>
+    <string name="app_name">HopOp.V1.0</string>
+    <string name="action_settings">Settings</string>
+    <string name="title_activity_sign_up">RegisterActivity</string>
+    <string name="PickHeader">HOP_IN Point</string>
+    <string name="DropHeader">HOP_OUT Point</string>
+    <string name="PlyHeader">Shuttles</string>
+    <string name="PaymentHeader">Booking Confirmation</string>
+    <string name="SignUpHeader">Hop Up</string>
+    <string name="LoginHeader">Hop In</string>
+
+
+    <string name="navigation_drawer_open">Open navigation drawer</string>
+    <string name="navigation_drawer_close">Close navigation drawer</string>
+    <string name="title_activity_search">SearchActivity</string>
+    <string name="title_activity_search1">SearchActivity1</string>
+    <string name="title_activity_ply">PlyActivity</string>
+    <string name="title_activity_payment_activty">PaymentActivty</string>
+</resources>

@@ -1,0 +1,25 @@
+<!-- [ Mirror metadata ] generatedAt: 1463136998592 -->
+<!-- Generated screen file. Fill the id tags below with content with
+which to populate your previewed layout. For a complete specification
+of sample data, please see http://jimulabs.com/sample-data-specifications/ 
+
+Valid attributes on <screen> tag: theme="@style/someTheme" inEditMode="false" overlay="@drawable/mockup" -->
+<screen>
+    <_content layout="@layout/activity_payment">
+        <!-- TextView Examples:
+        <textView_justme text="@string/string_resource" />
+        <textView_justme text="Text literal" textSize="14sp" /> -->
+        <textView_justme />
+        <textView_justme1 />
+        <textView_justme2 />
+        <textView_justme3 />
+        <textView_Seats />
+        <textView_Balance />
+        <textView_NumofSeats />
+        <textView_BalanceAmt />
+        <textView_rideshare />
+        <textView_rideshareCalc />
+        <textView_rideshareAmt />
+        <textView2 />
+    </_content>
+</screen>
