@@ -4,7 +4,7 @@ import android.app.Activity;
 import android.content.Intent;
 import android.os.Bundle;
 
-import com.hopop.hopop.activities.LoginActivity;
+import com.hopop.hopop.login.activity.LoginActivity;
 import com.hopop.hopop.activities.R;
 
 public class SplashScreen extends Activity {
