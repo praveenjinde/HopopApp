@@ -20,9 +20,13 @@ import android.widget.TextView;
 import com.afollestad.materialdialogs.MaterialDialog;
 import com.hopop.hopop.login.activity.LoginActivity;
 
+import butterknife.Bind;
+import butterknife.ButterKnife;
+import butterknife.OnClick;
+
 public class PaymentActivty extends AppCompatActivity {
 
-    TextView MePlus, MePlus1,MePlus2,MePlus3,numofSeats,rideshareCalc,rideshareAmt;
+//    TextView MePlus, MePlus1,MePlus2,MePlus3,numofSeats,rideshareCalc,rideshareAmt;
     Button Pay;
 
     @Override
@@ -30,18 +34,29 @@ public class PaymentActivty extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setTitle(R.string.PaymentHeader);
         setContentView(R.layout.activity_payment);
+        ButterKnife.bind(this);
         Toolbar toolbar = (Toolbar) findViewById(R.id.toolbar);
-        setSupportActionBar(toolbar);
+        setSupportActionBar(toolbar);}
 
-        MePlus = (TextView)findViewById(R.id.textView_justme);
+    @Bind(R.id.textView_justme) TextView MePlus;
+    @Bind(R.id.textView_justme1) TextView MePlus1;
+    @Bind(R.id.textView_justme2) TextView MePlus2;
+    @Bind(R.id.textView_justme3) TextView MePlus3;
+    @Bind(R.id.textView_NumofSeats) TextView numofSeats;
+    @Bind(R.id.textView_rideshareCalc) TextView rideshareCalc;
+    @Bind(R.id.textView_rideshareAmt) TextView rideshareAmt;
+
+        /*MePlus = (TextView)findViewById(R.id.textView_justme);
         MePlus1 = (TextView)findViewById(R.id.textView_justme1);
         MePlus2 = (TextView)findViewById(R.id.textView_justme2);
         MePlus3 = (TextView)findViewById(R.id.textView_justme3);
-        Pay = (Button)findViewById(R.id.button_Pay);
+        Pay = (Button)findViewById(R.id.button_Pay);*/
 
-        MePlus.setOnClickListener(new View.OnClickListener() {
+        /*MePlus.setOnClickListener(new View.OnClickListener() {
             @Override
-            public void onClick(View v) {
+            public void onClick(View v) {*/
+    @OnClick (R.id.textView_justme)
+    public void meUser(View view){
                 numofSeats = (TextView)findViewById(R.id.textView_NumofSeats);
                 numofSeats.setText("01");
                 rideshareCalc = (TextView)findViewById(R.id.textView_rideshareCalc);
@@ -49,10 +64,12 @@ public class PaymentActivty extends AppCompatActivity {
                 rideshareAmt = (TextView)findViewById(R.id.textView_rideshareAmt);
                 rideshareAmt.setText("30Rs");
             }
-        });
-        MePlus1.setOnClickListener(new View.OnClickListener() {
+        //});
+        /*MePlus1.setOnClickListener(new View.OnClickListener() {
             @Override
-            public void onClick(View v) {
+            public void onClick(View v) {*/
+        @OnClick (R.id.textView_justme1)
+        public void meUser1(View view){
                 numofSeats = (TextView)findViewById(R.id.textView_NumofSeats);
                 numofSeats.setText("02");
                 rideshareCalc = (TextView)findViewById(R.id.textView_rideshareCalc);
@@ -60,10 +77,12 @@ public class PaymentActivty extends AppCompatActivity {
                 rideshareAmt = (TextView)findViewById(R.id.textView_rideshareAmt);
                 rideshareAmt.setText("60Rs");
             }
-        });
-        MePlus2.setOnClickListener(new View.OnClickListener() {
+       // });
+        /*MePlus2.setOnClickListener(new View.OnClickListener() {
             @Override
-            public void onClick(View v) {
+            public void onClick(View v) {*/
+       @OnClick (R.id.textView_justme2)
+       public void meUser2(View view){
                 numofSeats = (TextView)findViewById(R.id.textView_NumofSeats);
                 numofSeats.setText("03");
                 rideshareCalc = (TextView)findViewById(R.id.textView_rideshareCalc);
@@ -71,10 +90,12 @@ public class PaymentActivty extends AppCompatActivity {
                 rideshareAmt = (TextView)findViewById(R.id.textView_rideshareAmt);
                 rideshareAmt.setText("90Rs");
             }
-        });
-        MePlus3.setOnClickListener(new View.OnClickListener() {
+        //});
+        /*MePlus3.setOnClickListener(new View.OnClickListener() {
             @Override
-            public void onClick(View v) {
+            public void onClick(View v) {*/
+        @OnClick (R.id.textView_justme3)
+        public void meUser3(View view){
                 numofSeats = (TextView)findViewById(R.id.textView_NumofSeats);
                 numofSeats.setText("04");
                 rideshareCalc = (TextView)findViewById(R.id.textView_rideshareCalc);
@@ -82,10 +103,12 @@ public class PaymentActivty extends AppCompatActivity {
                 rideshareAmt = (TextView)findViewById(R.id.textView_rideshareAmt);
                 rideshareAmt.setText("120Rs");
             }
-        });
-        Pay.setOnClickListener(new View.OnClickListener() {
+        //});
+        /*Pay.setOnClickListener(new View.OnClickListener() {
             @Override
-            public void onClick(View v) {
+            public void onClick(View v) {*/
+        @OnClick (R.id.button_Pay)
+        public void payButton(View view){
                 AlertDialog alertDialog = new AlertDialog.Builder(
                         PaymentActivty.this).create();
 
@@ -124,9 +147,10 @@ public class PaymentActivty extends AppCompatActivity {
 
 
                 showNotification(PaymentActivty.this);
-            }});
+            }
+//});
 
-    }
+    //}
 
 
     private void showConfirmationDialog(){

@@ -21,12 +21,10 @@ public class SearchActivity extends AppCompatActivity {
     EditText editText;
     public static String srcSelect =null;
 
-
     String[] values = new String[]{"KBS (Majestic)", "Banashankari", "Shivajinagar", "K. R. Market",
             "Shantinagar Bus Stand", "K.R.Pura", "Electronic City", "Marathahalli", "Vijaya Nagar",
             "ITPL", "Bapuji Nagar", "Magadi Road", "Rajaji Nagar", "Yashwanthpur", "Mysore Circle",
             "Jayanagar", "Koramangala", "Hebbala", "Chamaraja Nagar"};
-
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -36,7 +34,6 @@ public class SearchActivity extends AppCompatActivity {
         Toolbar toolbar = (Toolbar) findViewById(R.id.toolbar);
         setSupportActionBar(toolbar);
 
-        // editText = (EditText) findViewById(R.id.editText);
         listView = (ListView) findViewById(R.id.listView);
         ArrayAdapter<String> adapter = new ArrayAdapter<String>(this, android.R.layout.simple_list_item_1, android.R.id.text1, values);
         listView.setAdapter(adapter);
@@ -54,18 +51,11 @@ public class SearchActivity extends AppCompatActivity {
                 // ListView Clicked item value
                 String src = (String) listView.getItemAtPosition(position);
 
-                //   String srcSelect = listView.getSelectedItem().toString();
-                // String srcSelect = ((TextView)view).getText().toString();
                 srcSelect = ((TextView)view).getText().toString();
-
-                //Toast.makeText(getApplicationContext(),
-                //"Position :" + itemPosition + "  ListItem : " + itemValue, Toast.LENGTH_LONG).show();
 
                 Intent intent_5 = new Intent(SearchActivity.this, SearchActivity1.class);
                 intent_5.putExtra("src", srcSelect);
                 startActivity(intent_5);
-
-
             }
 
 

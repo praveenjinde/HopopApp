@@ -1,6 +1,5 @@
 package com.hopop.hopop.communicators.builder;
 
-
 public class LoginUser {
 
     private String mobile_number;
