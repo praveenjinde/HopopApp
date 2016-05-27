@@ -14,10 +14,10 @@ import android.widget.EditText;
 import android.widget.Toast;
 import android.content.Intent;
 
-import com.hopop.hopop.activities.R;
-import com.hopop.hopop.activities.SearchActivity;
+import com.hopop.hopop.ply.R;
+import com.hopop.hopop.source.activity.SourceActivity;
 import com.hopop.hopop.communicators.CommunicatorClass;
-import com.hopop.hopop.communicators.builder.RegisterUser;
+import com.hopop.hopop.registration.data.RegisterUser;
 import com.hopop.hopop.response.Registerresponse;
 
 import butterknife.Bind;
@@ -59,7 +59,7 @@ public class RegisterActivity extends AppCompatActivity {
                     @Override
                     public void onResponse(Call<Registerresponse> call, Response<Registerresponse> response) {
                         Toast.makeText(RegisterActivity.this, "Registration Successful", Toast.LENGTH_LONG).show();
-                        Intent register = new Intent(RegisterActivity.this, SearchActivity.class);
+                        Intent register = new Intent(RegisterActivity.this, SourceActivity.class);
                         startActivity(register);
                         Log.e(getClass().getSimpleName(), "successful");
 

@@ -12,11 +12,11 @@ import android.view.WindowManager;
 import android.widget.EditText;
 import android.widget.Toast;
 import com.facebook.stetho.Stetho;
-import com.hopop.hopop.activities.R;
+import com.hopop.hopop.ply.R;
 import com.hopop.hopop.registration.activity.RegisterActivity;
-import com.hopop.hopop.activities.SearchActivity;
+import com.hopop.hopop.source.activity.SourceActivity;
 import com.hopop.hopop.communicators.CommunicatorClass;
-import com.hopop.hopop.communicators.builder.LoginUser;
+import com.hopop.hopop.login.data.LoginUser;
 import com.hopop.hopop.response.Registerresponse;
 
 import butterknife.Bind;
@@ -56,7 +56,7 @@ public class LoginActivity extends AppCompatActivity {
                         @Override
                         public void onResponse(Call<Registerresponse> call, Response<Registerresponse> response) {
                             Toast.makeText(LoginActivity.this, "Login SuccessFully", Toast.LENGTH_SHORT).show();
-                            Intent searchIntent = new Intent(LoginActivity.this, SearchActivity.class);
+                            Intent searchIntent = new Intent(LoginActivity.this, SourceActivity.class);
                             startActivity(searchIntent);
 
                             Log.e(getClass().getSimpleName(), "successful");

@@ -16,4 +16,6 @@
     <string name="title_activity_search1">SearchActivity1</string>
     <string name="title_activity_ply">PlyActivity</string>
     <string name="title_activity_payment_activty">PaymentActivty</string>
+    <string name="txt_content">Double back press to exit the application</string>
+    <string name="title_activity_payment">PaymentActivity</string>
 </resources>

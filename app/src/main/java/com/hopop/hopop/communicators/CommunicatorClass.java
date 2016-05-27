@@ -21,7 +21,7 @@ public class CommunicatorClass {
                     .addNetworkInterceptor(new StethoInterceptor()).build();
 
             Retrofit retrofit = new Retrofit.Builder()
-                    .baseUrl("http://172.30.250.24:80/hari/hopop/")
+                    .baseUrl("http://172.30.250.23:80/hari/hopop/")
                     .client(client)
                     .addConverterFactory(GsonConverterFactory.create())
                     .build();

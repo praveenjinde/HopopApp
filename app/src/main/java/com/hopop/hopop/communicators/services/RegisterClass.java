@@ -1,7 +1,7 @@
 package com.hopop.hopop.communicators.services;
 
-import com.hopop.hopop.communicators.builder.LoginUser;
-import com.hopop.hopop.communicators.builder.RegisterUser;
+import com.hopop.hopop.login.data.LoginUser;
+import com.hopop.hopop.registration.data.RegisterUser;
 import com.hopop.hopop.response.Registerresponse;
 
 import retrofit2.Call;
