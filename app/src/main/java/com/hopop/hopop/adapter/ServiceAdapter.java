@@ -9,8 +9,8 @@ import android.widget.BaseAdapter;
 import android.widget.ImageView;
 import android.widget.TextView;
 
-import com.hopop.hopop.activities.R;
-import com.hopop.hopop.activities.Service;
+import com.hopop.hopop.ply.R;
+import com.hopop.hopop.service.activity.Service;
 
 import java.util.ArrayList;
 import java.util.List;

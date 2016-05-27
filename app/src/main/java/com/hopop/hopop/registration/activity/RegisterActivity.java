@@ -11,50 +11,43 @@ import android.view.MotionEvent;
 import android.view.View;
 import android.view.WindowManager;
 import android.widget.EditText;
-import android.widget.Button;
-import android.widget.ImageButton;
 import android.widget.Toast;
 import android.content.Intent;
 
-import com.hopop.hopop.activities.R;
-import com.hopop.hopop.activities.SearchActivity;
+import com.hopop.hopop.ply.R;
+import com.hopop.hopop.source.activity.SourceActivity;
 import com.hopop.hopop.communicators.CommunicatorClass;
-import com.hopop.hopop.communicators.builder.RegisterUser;
+import com.hopop.hopop.registration.data.RegisterUser;
 import com.hopop.hopop.response.Registerresponse;
 
+import butterknife.Bind;
+import butterknife.ButterKnife;
+import butterknife.OnClick;
+import butterknife.OnTouch;
 import retrofit2.Call;
 import retrofit2.Callback;
 import retrofit2.Response;
 
-
 public class RegisterActivity extends AppCompatActivity {
-
-    EditText email, pass, fName, lName, mobile;
-    Button SignUp, linkedIn, facebook;
-    ImageButton eye;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_register);
-        //ButterKnife.bind(this);
-        email = (EditText) findViewById(R.id.editText_email);
-        pass = (EditText) findViewById(R.id.editText_Psw);
-        fName = (EditText) findViewById(R.id.editText_fn);
-        lName = (EditText) findViewById(R.id.editText_ln);
-        mobile = (EditText) findViewById(R.id.editText_mn);
-        SignUp = (Button) findViewById(R.id.button_Done);
-        eye = (ImageButton) findViewById(R.id.Button_eye);
-        linkedIn = (Button) findViewById(R.id.button_Lin);
-        facebook = (Button) findViewById(R.id.button_Lin);
+        ButterKnife.bind(this);
 
         getWindow().setSoftInputMode(WindowManager.LayoutParams.SOFT_INPUT_STATE_HIDDEN);
+    }
 
-    /*@OnClick(R.id.button_signup)
-    public void signUpUser(View view){*/
-        SignUp.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
+    @Bind(R.id.editText_mn) EditText mobile;
+    @Bind(R.id.editText_Psw) EditText pass;
+    @Bind(R.id.editText_fn) EditText fName;
+    @Bind(R.id.editText_ln) EditText lName;
+    @Bind(R.id.editText_email) EditText email;
+
+        @OnClick(R.id.button_Done)
+        public void signUpUser(View view){
+                if(checkFieldValidation()){
                 RegisterUser registerUser = new RegisterUser();
                 registerUser.setFirst_name(fName.getText().toString().trim());
                 registerUser.setLast_name(lName.getText().toString().trim());
@@ -66,7 +59,7 @@ public class RegisterActivity extends AppCompatActivity {
                     @Override
                     public void onResponse(Call<Registerresponse> call, Response<Registerresponse> response) {
                         Toast.makeText(RegisterActivity.this, "Registration Successful", Toast.LENGTH_LONG).show();
-                        Intent register = new Intent(RegisterActivity.this, SearchActivity.class);
+                        Intent register = new Intent(RegisterActivity.this, SourceActivity.class);
                         startActivity(register);
                         Log.e(getClass().getSimpleName(), "successful");
 
@@ -81,34 +74,24 @@ public class RegisterActivity extends AppCompatActivity {
 
 
                 });
+
+                }
             }
-        });
 
-
-
-
-        linkedIn.setOnClickListener(new View.OnClickListener()
-
-        {
-            @Override
-            public void onClick(View V) {
+    @OnClick(R.id.button_Lin)
+    public void linkedInUser(View view){
                 Intent browserIntent = new Intent(Intent.ACTION_VIEW, Uri.parse("https://www.linkedin.com/uas/login"));
                 startActivity(browserIntent);
 
             }
 
+    @OnClick(R.id.button_fb)
+    public void facebookUser(View view){
+        Intent browserIntent = new Intent(Intent.ACTION_VIEW, Uri.parse("https://www.facebook.com/login/"));
+        startActivity(browserIntent);
+    }
 
-        });
-
-        facebook.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View V) {
-                Intent browserIntent = new Intent(Intent.ACTION_VIEW, Uri.parse("https://www.facebook.com/login/"));
-                startActivity(browserIntent);
-            }
-        });
-
-        eye.setOnTouchListener(new View.OnTouchListener() {
+            @OnTouch(R.id.Button_eye)
             public boolean onTouch(View v, MotionEvent event) {
                 switch (event.getAction()) {
                     case MotionEvent.ACTION_DOWN:
@@ -122,30 +105,70 @@ public class RegisterActivity extends AppCompatActivity {
                 }
                 return true;
             }
-        });
-
-
-    }
 
     //checking field are empty
-    private boolean CheckFieldValidation() {
+    private boolean checkFieldValidation() {
 
-        boolean valid = true;
-        if (fName.getText().toString().equals("")) {
-            fName.setError("Can't be Empty");
-            valid = false;
-        } else if (lName.getText().toString().equals("")) {
-            lName.setError("Can't be Empty");
-            valid = false;
-        } else if (email.getText().toString().equals("")) {
-            email.setError("Can't be Empty");
-            valid = false;
-        } else if (mobile.getText().toString().equals("")) {
-            mobile.setError("Can't be Empty");
-            valid = false;
-        } else if (pass.getText().toString().equals("")) {
-            pass.setError("Can't be Empty");
-            valid = false;
+        boolean valid=true;
+        String fNameValidation = fName.getText().toString();
+        String lNameValidation = lName.getText().toString();
+        String emailValidation = email.getText().toString();
+        String mobileValidation = mobile.getText().toString();
+        String passwordValidation = pass.getText().toString();
+
+        if(fName.length()==0)
+        {
+            fName.requestFocus();
+            fName.setError("Field Cann't be Empty");
+        }
+        else if(!fNameValidation.matches("[a-zA-Z ]+"))
+        {
+            fName.requestFocus();
+            fName.setError("Enter Only Alphabetical Character");
+        }
+
+        else if(lName.length()==0)
+        {
+            lName.requestFocus();
+            lName.setError("Field Cann't be Empty");
+        }
+        else if(!lNameValidation.matches("[a-zA-Z ]+"))
+        {
+            lName.requestFocus();
+            lName.setError("Enter Only Alphabetical Character");
+        }
+
+        else if(email.length()==0)
+        {
+            email.requestFocus();
+            email.setError("Field Cann't be Empty");
+        }
+        else if(!emailValidation.matches("^[A-Za-z0-9-\\+]+(\\.[_A-Za-z0-9-]+)*@"
+                + "[A-Za-z0-9-]+(\\.[A-Za-z0-9]+)*(\\.[A-Za-z]{2,})$"))
+        {
+            email.requestFocus();
+            email.setError("Enter Valid Email Id");
+        }
+
+        else if(mobile.length()==0)
+        {
+            mobile.requestFocus();
+            mobile.setError("Field Cann't be Empty");
+        }
+        else if(!mobileValidation.matches("^(?:(?:\\+|0{0,2})91(\\s*[\\-]\\s*)?|[0]?)?[789]\\d{9}$"))
+        {
+            mobile.requestFocus();
+            mobile.setError("Enter Valid Mobile Number");
+        }
+
+        else if(pass.length()==0)
+        {
+            pass.requestFocus();
+            pass.setError("Field Cann't be Empty");
+        }
+        else
+        {
+            Toast.makeText(RegisterActivity.this, "Registration SuccessFully", Toast.LENGTH_LONG).show();
         }
 
         return valid;

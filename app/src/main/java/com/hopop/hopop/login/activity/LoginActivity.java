@@ -11,15 +11,17 @@ import android.view.View;
 import android.view.WindowManager;
 import android.widget.EditText;
 import android.widget.Toast;
-import android.widget.Button;
 import com.facebook.stetho.Stetho;
-import com.hopop.hopop.activities.R;
+import com.hopop.hopop.ply.R;
 import com.hopop.hopop.registration.activity.RegisterActivity;
-import com.hopop.hopop.activities.SearchActivity;
+import com.hopop.hopop.source.activity.SourceActivity;
 import com.hopop.hopop.communicators.CommunicatorClass;
-import com.hopop.hopop.communicators.builder.LoginUser;
+import com.hopop.hopop.login.data.LoginUser;
 import com.hopop.hopop.response.Registerresponse;
 
+import butterknife.Bind;
+import butterknife.ButterKnife;
+import butterknife.OnClick;
 import retrofit2.Call;
 import retrofit2.Callback;
 import retrofit2.Response;
@@ -27,71 +29,60 @@ import retrofit2.Response;
 
 public class LoginActivity extends AppCompatActivity {
 
-    EditText mobile,pass;
-    Button Login, SignUp;
-
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         Stetho.initializeWithDefaults(this);
         setContentView(R.layout.activity_login);
+        ButterKnife.bind(this);
         Toolbar toolbar = (Toolbar) findViewById(R.id.toolbar);
         setSupportActionBar(toolbar);
 
-        mobile=(EditText)findViewById(R.id.editText_mn);
-        pass=(EditText)findViewById(R.id.editText_Psw);
-        Login = (Button) findViewById(R.id.button_Login);
-        SignUp = (Button) findViewById(R.id.button_signup);
-
         getWindow().setSoftInputMode(WindowManager.LayoutParams.SOFT_INPUT_STATE_HIDDEN);
+    }
 
-        Login.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
-//            CommunicatorClass communicatorClass = new CommunicatorClass();
-                LoginUser loginUser = new LoginUser();
-                loginUser.setMobile_number(mobile.getText().toString().trim());
-                loginUser.setPassword(pass.getText().toString().trim());
-                //Log.d(getClass().getSimpleName(),"on submit button pressed");
-                Log.d("RANDOM TAG", "on submit button pressed");
-                CommunicatorClass.getRegisterClass().groupListLogin(loginUser).enqueue(new Callback<Registerresponse>() {
-                    @Override
-                    public void onResponse(Call<Registerresponse> call, Response<Registerresponse> response) {
-                        Toast.makeText(LoginActivity.this, "Login SuccessFully", Toast.LENGTH_SHORT).show();
-                        Intent searchIntent = new Intent(LoginActivity.this, SearchActivity.class);
-                        startActivity(searchIntent);
+    @Bind(R.id.editText_mn) EditText mobile;
+    @Bind(R.id.editText_Psw) EditText pass;
 
-                        Log.e(getClass().getSimpleName(), "successful");
+    @OnClick (R.id.button_Login)
+    public void loginUser(View view){
+                if(checkFieldValidation()){
 
-                    }
+                    LoginUser loginUser = new LoginUser();
+                    loginUser.setMobile_number(mobile.getText().toString().trim());
+                    loginUser.setPassword(pass.getText().toString().trim());
+                    Log.d("RANDOM TAG", "on submit button pressed");
+                    CommunicatorClass.getRegisterClass().groupListLogin(loginUser).enqueue(new Callback<Registerresponse>() {
+                        @Override
+                        public void onResponse(Call<Registerresponse> call, Response<Registerresponse> response) {
+                            Toast.makeText(LoginActivity.this, "Login SuccessFully", Toast.LENGTH_SHORT).show();
+                            Intent searchIntent = new Intent(LoginActivity.this, SourceActivity.class);
+                            startActivity(searchIntent);
 
-                    @Override
-                    public void onFailure(Call<Registerresponse> call, Throwable t) {
-                        Toast.makeText(LoginActivity.this, "Invalid Mobile Number/Password", Toast.LENGTH_SHORT).show();
-                        Log.e(getClass().getSimpleName(), "failure");
+                            Log.e(getClass().getSimpleName(), "successful");
 
-                    }
+                        }
 
+                        @Override
+                        public void onFailure(Call<Registerresponse> call, Throwable t) {
+                            Toast.makeText(LoginActivity.this, "Invalid Mobile Number/Password", Toast.LENGTH_SHORT).show();
+                            Log.e(getClass().getSimpleName(), "failure");
 
-                });
-
-        }});
+                        }
 
 
-        //When Button Sign up clicked
-        SignUp.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
+                    });
+                }
+
+
+        }
+
+        @OnClick (R.id.button_signup)
+        public void signupUser(View view){
 
                 Intent i = new Intent(LoginActivity.this, RegisterActivity.class);
                 startActivity(i);
             }
-
-
-        });
-    }
-
-
 
     //checking field are empty
     private boolean checkFieldValidation(){
@@ -102,19 +93,17 @@ public class LoginActivity extends AppCompatActivity {
 
         if (mobile.length() == 0) {
             mobile.requestFocus();
-            mobile.setError("FIELD CANNOT BE EMPTY");
+            mobile.setError("Field Cann't be Empty");
         } else if (!mobileValidation.matches("^(?:(?:\\+|0{0,2})91(\\s*[\\-]\\s*)?|[0]?)?[789]\\d{9}$")) {
             mobile.requestFocus();
-            mobile.setError("ENTER Valid Mobile Number");
+            mobile.setError("Enter Valid Mobile Number");
         } else if (passwordValidation.length() == 0) {
             pass.requestFocus();
-            pass.setError("FIELD CANNOT BE EMPTY");
+            pass.setError("Field Cann't be Empty");
         }
         else
         {
             Toast.makeText(LoginActivity.this, "Login SuccessFully", Toast.LENGTH_LONG).show();
-            //Intent searchIntent = new Intent(LoginActivity.this, RegisterActivity.class);
-            //startActivity(searchIntent);
         }
 
         return valid;

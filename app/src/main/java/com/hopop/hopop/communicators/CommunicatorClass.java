@@ -1,6 +1,5 @@
 package com.hopop.hopop.communicators;
 
-
 import com.facebook.stetho.okhttp3.StethoInterceptor;
 import com.hopop.hopop.communicators.services.RegisterClass;
 
@@ -22,7 +21,7 @@ public class CommunicatorClass {
                     .addNetworkInterceptor(new StethoInterceptor()).build();
 
             Retrofit retrofit = new Retrofit.Builder()
-                    .baseUrl("http://172.31.4.252:80/hari/hopop/")
+                    .baseUrl("http://172.30.250.23:80/hari/hopop/")
                     .client(client)
                     .addConverterFactory(GsonConverterFactory.create())
                     .build();
