@@ -1,0 +1,27 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    android:background="@drawable/joseph_strauss"
+    android:orientation="vertical">
+
+
+    <TextView
+        android:layout_width="240dp"
+        android:layout_height="60dp"
+        android:text="HopOp"
+        android:textSize="60sp"
+        android:id="@+id/ho"
+        android:layout_gravity="center_horizontal"
+        style="@style/Base.Animation.AppCompat.Dialog"
+        android:fadingEdge="horizontal"
+        android:textAlignment="center"
+        android:textColor="#f3fb05"
+        android:textColorHighlight="#ce1b1b"
+        android:textIsSelectable="true"
+        android:textStyle="bold"
+        android:visibility="visible"
+        android:layout_marginTop="140dp"
+        android:layout_marginRight="-60dp" />
+</LinearLayout>
