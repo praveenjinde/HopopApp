@@ -5,6 +5,7 @@ import android.content.res.Configuration;
 import android.net.Uri;
 import android.os.Bundle;
 import android.support.v7.app.AppCompatActivity;
+import android.support.v7.widget.Toolbar;
 import android.text.InputType;
 import android.util.Log;
 import android.view.MotionEvent;
@@ -33,9 +34,11 @@ public class RegisterActivity extends AppCompatActivity {
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
+        setTitle("Hop Up");
         setContentView(R.layout.activity_register);
         ButterKnife.bind(this);
-
+        Toolbar toolbar = (Toolbar) findViewById(R.id.toolbar);
+        setSupportActionBar(toolbar);
         getWindow().setSoftInputMode(WindowManager.LayoutParams.SOFT_INPUT_STATE_HIDDEN);
     }
 
@@ -165,10 +168,6 @@ public class RegisterActivity extends AppCompatActivity {
         {
             pass.requestFocus();
             pass.setError("Field Cann't be Empty");
-        }
-        else
-        {
-            Toast.makeText(RegisterActivity.this, "Registration SuccessFully", Toast.LENGTH_LONG).show();
         }
 
         return valid;

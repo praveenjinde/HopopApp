@@ -47,13 +47,13 @@
             android:label="HOPOUT Locations"
             android:theme="@style/AppTheme.NoActionBar" />
         <activity
-            android:name=".activity.PlyActivity"
+            android:name="com.hopop.hopop.ply.activity.PlyActivity"
             android:label="STUTTLE"
             android:theme="@style/AppTheme.NoActionBar" />
         <activity
             android:name="com.hopop.hopop.payment.activity.PaymentActivity"
             android:label="@string/title_activity_payment"
-            android:theme="@style/AppTheme.NoActionBar"></activity>
+            android:theme="@style/AppTheme.NoActionBar"/>
     </application>
 
 </manifest>

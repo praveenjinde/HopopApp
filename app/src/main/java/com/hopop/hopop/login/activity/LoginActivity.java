@@ -33,11 +33,11 @@ public class LoginActivity extends AppCompatActivity {
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         Stetho.initializeWithDefaults(this);
+        setTitle("Hop In");
         setContentView(R.layout.activity_login);
         ButterKnife.bind(this);
         Toolbar toolbar = (Toolbar) findViewById(R.id.toolbar);
         setSupportActionBar(toolbar);
-
         getWindow().setSoftInputMode(WindowManager.LayoutParams.SOFT_INPUT_STATE_HIDDEN);
     }
 
@@ -100,10 +100,6 @@ public class LoginActivity extends AppCompatActivity {
         } else if (passwordValidation.length() == 0) {
             pass.requestFocus();
             pass.setError("Field Cann't be Empty");
-        }
-        else
-        {
-            Toast.makeText(LoginActivity.this, "Login SuccessFully", Toast.LENGTH_LONG).show();
         }
 
         return valid;

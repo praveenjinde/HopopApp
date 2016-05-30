@@ -18,4 +18,5 @@
     <string name="title_activity_payment_activty">PaymentActivty</string>
     <string name="txt_content">Double back press to exit the application</string>
     <string name="title_activity_payment">PaymentActivity</string>
+    <string name="title_activity_login">LoginActivity</string>
 </resources>

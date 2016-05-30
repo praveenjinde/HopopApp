@@ -77,6 +77,31 @@ public class DestinationActivity extends AppCompatActivity implements Navigation
 
 
         });
+        search.setOnItemClickListener(new AdapterView.OnItemClickListener() {
+            @Override
+            public void onItemClick(AdapterView<?> parent, View view,
+                                    int position, long id) {
+
+                // ListView Clicked item index
+                int itemPosition = position;
+
+                // ListView Clicked item value
+                String dest = (String) listView.getItemAtPosition(position);
+                //   String destSelect = listView.getSelectedItem().toString();
+                String destSelect = ((TextView)view).getText().toString();
+
+                //Toast.makeText(getApplicationContext(),
+                //"Position :" + itemPosition + "  ListItem : " + itemValue, Toast.LENGTH_LONG).show();
+                Intent intent_6 = new Intent(DestinationActivity.this, PlyActivity.class);
+                intent_6.putExtra("src", src);
+                intent_6.putExtra("dest", destSelect);
+                startActivity(intent_6);
+
+            }
+
+
+        });
+
 
         DrawerLayout drawer = (DrawerLayout) findViewById(R.id.drawer_layout);
         ActionBarDrawerToggle toggle = new ActionBarDrawerToggle(
