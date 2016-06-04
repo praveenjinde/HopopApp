@@ -46,43 +46,44 @@ public class LoginActivity extends AppCompatActivity {
 
     @OnClick (R.id.button_Login)
     public void loginUser(View view){
-                if(checkFieldValidation()){
+        if(checkFieldValidation()){
 
-                    LoginUser loginUser = new LoginUser();
-                    loginUser.setMobile_number(mobile.getText().toString().trim());
-                    loginUser.setPassword(pass.getText().toString().trim());
-                    Log.d("RANDOM TAG", "on submit button pressed");
-                    CommunicatorClass.getRegisterClass().groupListLogin(loginUser).enqueue(new Callback<Registerresponse>() {
-                        @Override
-                        public void onResponse(Call<Registerresponse> call, Response<Registerresponse> response) {
-                            Toast.makeText(LoginActivity.this, "Login SuccessFully", Toast.LENGTH_SHORT).show();
-                            Intent searchIntent = new Intent(LoginActivity.this, SourceActivity.class);
-                            startActivity(searchIntent);
+            LoginUser loginUser = new LoginUser();
+            loginUser.setMobile_number(mobile.getText().toString().trim());
+            loginUser.setPassword(pass.getText().toString().trim());
+            Log.d("RANDOM TAG", "on submit button pressed");
+            CommunicatorClass.getRegisterClass().groupListLogin(loginUser).enqueue(new Callback<Registerresponse>() {
+                @Override
+                public void onResponse(Call<Registerresponse> call, Response<Registerresponse> response) {
+                    Toast.makeText(LoginActivity.this, "Login SuccessFully", Toast.LENGTH_SHORT).show();
+                    Intent searchIntent = new Intent(LoginActivity.this, SourceActivity.class);
+                    startActivity(searchIntent);
 
-                            Log.e(getClass().getSimpleName(), "successful");
+                    Log.e(getClass().getSimpleName(), "successful");
 
-                        }
+                }
 
-                        @Override
-                        public void onFailure(Call<Registerresponse> call, Throwable t) {
-                            Toast.makeText(LoginActivity.this, "Invalid Mobile Number/Password", Toast.LENGTH_SHORT).show();
-                            Log.e(getClass().getSimpleName(), "failure");
+                @Override
+                public void onFailure(Call<Registerresponse> call, Throwable t) {
+                    Log.e(getClass().getSimpleName(), "failure");
+                    Toast.makeText(LoginActivity.this, "Invalid Mobile Number/Password", Toast.LENGTH_SHORT).show();
+                    Log.e(getClass().getSimpleName(), "failure");
 
-                        }
-
-
-                    });
                 }
 
 
+            });
         }
 
-        @OnClick (R.id.button_signup)
-        public void signupUser(View view){
 
-                Intent i = new Intent(LoginActivity.this, RegisterActivity.class);
-                startActivity(i);
-            }
+    }
+
+    @OnClick (R.id.button_signup)
+    public void signupUser(View view){
+
+        Intent i = new Intent(LoginActivity.this, RegisterActivity.class);
+        startActivity(i);
+    }
 
     //checking field are empty
     private boolean checkFieldValidation(){

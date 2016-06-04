@@ -9,6 +9,7 @@
     tools:context="com.hopop.hopop.source.activity.SourceActivity"
     tools:showIn="@layout/app_bar_source">
 
+
     <ListView
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"

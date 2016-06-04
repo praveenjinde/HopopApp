@@ -48,45 +48,45 @@ public class RegisterActivity extends AppCompatActivity {
     @Bind(R.id.editText_ln) EditText lName;
     @Bind(R.id.editText_email) EditText email;
 
-        @OnClick(R.id.button_Done)
-        public void signUpUser(View view){
-                if(checkFieldValidation()){
-                RegisterUser registerUser = new RegisterUser();
-                registerUser.setFirst_name(fName.getText().toString().trim());
-                registerUser.setLast_name(lName.getText().toString().trim());
-                registerUser.setMail_id(email.getText().toString().trim());
-                registerUser.setMobile_number(mobile.getText().toString().trim());
-                registerUser.setPassword(pass.getText().toString().trim());
-                Log.d("RANDOM TAG", "on submit button pressed");
-                CommunicatorClass.getRegisterClass().groupListReg(registerUser).enqueue(new Callback<Registerresponse>() {
-                    @Override
-                    public void onResponse(Call<Registerresponse> call, Response<Registerresponse> response) {
-                        Toast.makeText(RegisterActivity.this, "Registration Successful", Toast.LENGTH_LONG).show();
-                        Intent register = new Intent(RegisterActivity.this, SourceActivity.class);
-                        startActivity(register);
-                        Log.e(getClass().getSimpleName(), "successful");
-
-                    }
-
-                    @Override
-                    public void onFailure(Call<Registerresponse> call, Throwable t) {
-                        Toast.makeText(RegisterActivity.this, "Registration Unsuccessful", Toast.LENGTH_LONG).show();
-                        Log.e(getClass().getSimpleName(), "failure");
-
-                    }
-
-
-                });
+    @OnClick(R.id.button_Done)
+    public void signUpUser(View view){
+        if(checkFieldValidation()){
+            RegisterUser registerUser = new RegisterUser();
+            registerUser.setFirst_name(fName.getText().toString().trim());
+            registerUser.setLast_name(lName.getText().toString().trim());
+            registerUser.setMail_id(email.getText().toString().trim());
+            registerUser.setMobile_number(mobile.getText().toString().trim());
+            registerUser.setPassword(pass.getText().toString().trim());
+            Log.d("RANDOM TAG", "on submit button pressed");
+            CommunicatorClass.getRegisterClass().groupListReg(registerUser).enqueue(new Callback<Registerresponse>() {
+                @Override
+                public void onResponse(Call<Registerresponse> call, Response<Registerresponse> response) {
+                    Toast.makeText(RegisterActivity.this, "Registration Successful", Toast.LENGTH_LONG).show();
+                    Intent register = new Intent(RegisterActivity.this, SourceActivity.class);
+                    startActivity(register);
+                    Log.e(getClass().getSimpleName(), "successful");
 
                 }
-            }
+
+                @Override
+                public void onFailure(Call<Registerresponse> call, Throwable t) {
+                    Toast.makeText(RegisterActivity.this, "Registration Unsuccessful", Toast.LENGTH_LONG).show();
+                    Log.e(getClass().getSimpleName(), "failure");
+
+                }
+
+
+            });
+
+        }
+    }
 
     @OnClick(R.id.button_Lin)
     public void linkedInUser(View view){
-                Intent browserIntent = new Intent(Intent.ACTION_VIEW, Uri.parse("https://www.linkedin.com/uas/login"));
-                startActivity(browserIntent);
+        Intent browserIntent = new Intent(Intent.ACTION_VIEW, Uri.parse("https://www.linkedin.com/uas/login"));
+        startActivity(browserIntent);
 
-            }
+    }
 
     @OnClick(R.id.button_fb)
     public void facebookUser(View view){
@@ -94,20 +94,20 @@ public class RegisterActivity extends AppCompatActivity {
         startActivity(browserIntent);
     }
 
-            @OnTouch(R.id.Button_eye)
-            public boolean onTouch(View v, MotionEvent event) {
-                switch (event.getAction()) {
-                    case MotionEvent.ACTION_DOWN:
-                        pass.setInputType(InputType.TYPE_CLASS_TEXT);
-                        break;
+    @OnTouch(R.id.Button_eye)
+    public boolean onTouch(View v, MotionEvent event) {
+        switch (event.getAction()) {
+            case MotionEvent.ACTION_DOWN:
+                pass.setInputType(InputType.TYPE_CLASS_TEXT);
+                break;
 
-                    case MotionEvent.ACTION_UP:
-                        pass.setInputType(InputType.TYPE_CLASS_TEXT | InputType.TYPE_TEXT_VARIATION_PASSWORD);
-                        break;
+            case MotionEvent.ACTION_UP:
+                pass.setInputType(InputType.TYPE_CLASS_TEXT | InputType.TYPE_TEXT_VARIATION_PASSWORD);
+                break;
 
-                }
-                return true;
-            }
+        }
+        return true;
+    }
 
     //checking field are empty
     private boolean checkFieldValidation() {

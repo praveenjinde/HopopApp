@@ -1,27 +1,52 @@
 <?xml version="1.0" encoding="utf-8"?>
-<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    xmlns:app="http://schemas.android.com/apk/res-auto"
-    android:background="@drawable/joseph_strauss"
-    android:orientation="vertical">
+    android:background="#ffffff"
+    android:gravity="center"
+    android:layout_gravity="center_vertical|center_horizontal">
+
 
 
     <TextView
-        android:layout_width="240dp"
-        android:layout_height="60dp"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
         android:text="HopOp"
-        android:textSize="60sp"
-        android:id="@+id/ho"
-        android:layout_gravity="center_horizontal"
-        style="@style/Base.Animation.AppCompat.Dialog"
-        android:fadingEdge="horizontal"
-        android:textAlignment="center"
-        android:textColor="#f3fb05"
-        android:textColorHighlight="#ce1b1b"
-        android:textIsSelectable="true"
+        android:textSize="62sp"
         android:textStyle="bold"
-        android:visibility="visible"
-        android:layout_marginTop="140dp"
-        android:layout_marginRight="-60dp" />
-</LinearLayout>
+        android:textColor="#ff4000"
+        android:id="@+id/textView"
+        android:layout_gravity="center_horizontal"
+        android:layout_centerVertical="true"
+        android:layout_alignLeft="@+id/textView2"
+        android:layout_alignStart="@+id/textView2" />
+
+    <TextView
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="Personalized Commuter"
+        android:id="@+id/textView2"
+        android:textSize="18sp"
+        android:textStyle="italic"
+        android:textColor="#8c8c8c"
+        android:paddingTop="10dp"
+        android:layout_gravity="center_horizontal"
+        android:layout_below="@+id/textView"
+        android:layout_centerHorizontal="true" />
+
+    <ProgressBar
+        style="?android:attr/progressBarStyleHorizontal"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:id="@+id/progressBar"
+        android:indeterminate="false"
+        android:max="100"
+        android:minHeight="50dp"
+        android:minWidth="180dp"
+        android:progress="1"
+        android:layout_below="@+id/textView2"
+        android:layout_alignLeft="@+id/textView"
+        android:layout_alignStart="@+id/textView" />
+
+
+</RelativeLayout>
