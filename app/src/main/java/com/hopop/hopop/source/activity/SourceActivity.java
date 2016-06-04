@@ -87,6 +87,33 @@ public class SourceActivity extends AppCompatActivity implements NavigationView.
 
 
         });
+        search.setOnItemClickListener(new OnItemClickListener() {
+            @Override
+            public void onItemClick(AdapterView<?> parent, View view,
+                                    int position, long id) {
+
+                // ListView Clicked item index
+                int itemPosition = position;
+
+                // ListView Clicked item value
+                String src = (String) listView.getItemAtPosition(position);
+
+                //   String srcSelect = listView.getSelectedItem().toString();
+                // String srcSelect = ((TextView)view).getText().toString();
+                srcSelect = ((TextView)view).getText().toString();
+
+                //Toast.makeText(getApplicationContext(),
+                //"Position :" + itemPosition + "  ListItem : " + itemValue, Toast.LENGTH_LONG).show();
+
+                Intent intent_5 = new Intent(SourceActivity.this, DestinationActivity.class);
+                intent_5.putExtra("src", srcSelect);
+                startActivity(intent_5);
+
+
+            }
+
+
+        });
 
         DrawerLayout drawer = (DrawerLayout) findViewById(R.id.drawer_layout);
         ActionBarDrawerToggle toggle = new ActionBarDrawerToggle(
