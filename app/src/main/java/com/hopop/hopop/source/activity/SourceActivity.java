@@ -5,8 +5,8 @@ import android.support.design.widget.NavigationView;
 import android.support.v4.view.GravityCompat;
 import android.support.v4.widget.DrawerLayout;
 import android.support.v7.app.ActionBarDrawerToggle;
+import android.util.Log;
 import android.view.MenuItem;
-import android.view.View;
 import android.support.v7.app.AppCompatActivity;
 import android.support.v7.widget.Toolbar;
 import android.content.Intent;
@@ -15,31 +15,40 @@ import android.content.res.Configuration;
 import android.widget.ArrayAdapter;
 import android.widget.AutoCompleteTextView;
 import android.widget.ListView;
-import android.widget.AdapterView.OnItemClickListener;
-import android.widget.AdapterView;
 import android.widget.EditText;
 import android.widget.AbsListView;
-import android.widget.TextView;
 import android.widget.Toast;
 
+import com.google.gson.Gson;
+import com.hopop.hopop.communicators.CommunicatorClass;
+import com.hopop.hopop.database.FromRoute;
 import com.hopop.hopop.ply.R;
 import com.hopop.hopop.destination.activity.DestinationActivity;
 import com.hopop.hopop.login.activity.LoginActivity;
+import com.hopop.hopop.response.Registerresponse;
+import com.hopop.hopop.source.data.SourceList;
+import com.orm.query.Condition;
+import com.orm.query.Select;
+
+
+import java.util.ArrayList;
+import java.util.HashMap;
+import java.util.List;
+
+import retrofit2.Call;
+import retrofit2.Callback;
+import retrofit2.Response;
 
 public class SourceActivity extends AppCompatActivity implements NavigationView.OnNavigationItemSelectedListener {
 
     ListView listView;
     EditText editText;
-    public static String srcSelect =null;
+    Toolbar toolbar;
+    private ArrayList<SourceList> data;
+    //public static String srcSelect =null;
     private static final int TIME_DELAY = 3000;
     private static long back_pressed;
     AutoCompleteTextView search;
-
-
-    String[] values = new String[]{"KBS (Majestic)", "Banashankari", "Shivajinagar", "K. R. Market",
-            "Shantinagar Bus Stand", "K.R.Pura", "Electronic City", "Marathahalli", "Vijaya Nagar",
-            "ITPL", "Bapuji Nagar", "Magadi Road", "Rajaji Nagar", "Yashwanthpur", "Mysore Circle",
-            "Jayanagar", "Koramangala", "Hebbala", "Chamaraja Nagar"};
 
 
     @Override
@@ -47,73 +56,42 @@ public class SourceActivity extends AppCompatActivity implements NavigationView.
         super.onCreate(savedInstanceState);
         setTitle(R.string.PickHeader);
         setContentView(R.layout.activity_source);
-        Toolbar toolbar = (Toolbar) findViewById(R.id.toolbar);
+        toolbar = (Toolbar) findViewById(R.id.toolbar);
         setSupportActionBar(toolbar);
 
-        // editText = (EditText) findViewById(R.id.editText);
-        listView = (ListView) findViewById(R.id.listView);
-        ArrayAdapter<String> adapter = new ArrayAdapter<String>(this, android.R.layout.simple_list_item_1, android.R.id.text1, values);
-        listView.setAdapter(adapter);
-        listView.setChoiceMode(AbsListView.CHOICE_MODE_SINGLE);
-        listView.setSelector(android.R.color.holo_red_light);
         search= (AutoCompleteTextView)findViewById(R.id.autoCompleteTextView);
         search.setThreshold(1);//will start working from first character
-        search.setAdapter(adapter);//setting the adapter data into the AutoCompleteTextView
-
-        listView.setOnItemClickListener(new OnItemClickListener() {
+        SourceList sourceList = new SourceList();
+                //sourceList.setStopLocation(listView.getAdapter().toString().trim());
+                Log.d("RANDOM TAG", "on submit button pressed");
+        Call<SourceList> sourceList1 = CommunicatorClass.getRegisterClass().groupListSrc();
+        sourceList1.enqueue(new Callback<SourceList>() {
             @Override
-            public void onItemClick(AdapterView<?> parent, View view,
-                                    int position, long id) {
+            public void onResponse(Call<SourceList> call, Response<SourceList> response) {
+                Toast.makeText(SourceActivity.this, "In source Activity Login SuccessFully", Toast.LENGTH_SHORT).show();
+                SourceList sl = response.body();
+                for(FromRoute fromRoute: sl.getFromRoutes()){
+                    if(FromRoute.isNew(fromRoute.getStopLocation())) {
+                        fromRoute.save();
+                    }
+                }
+                List<FromRoute> list1 = Select.from(FromRoute.class).list();
+                for(FromRoute frmRout:list1){
+                    Log.e(getClass().getSimpleName(),"the db item is "+frmRout);
+                }
+                ArrayAdapter adapter = new ArrayAdapter<String>(getBaseContext(), R.layout.activity_source, list1);
 
-                // ListView Clicked item index
-                int itemPosition = position;
-
-                // ListView Clicked item value
-                String src = (String) listView.getItemAtPosition(position);
-
-                //   String srcSelect = listView.getSelectedItem().toString();
-                // String srcSelect = ((TextView)view).getText().toString();
-                srcSelect = ((TextView)view).getText().toString();
-
-                //Toast.makeText(getApplicationContext(),
-                //"Position :" + itemPosition + "  ListItem : " + itemValue, Toast.LENGTH_LONG).show();
-
-                Intent intent_5 = new Intent(SourceActivity.this, DestinationActivity.class);
-                intent_5.putExtra("src", srcSelect);
-                startActivity(intent_5);
-
+                ListView listView = (ListView) findViewById(R.id.listView);
+                listView.setAdapter(adapter);
 
             }
 
-
-        });
-        search.setOnItemClickListener(new OnItemClickListener() {
             @Override
-            public void onItemClick(AdapterView<?> parent, View view,
-                                    int position, long id) {
-
-                // ListView Clicked item index
-                int itemPosition = position;
-
-                // ListView Clicked item value
-                String src = (String) listView.getItemAtPosition(position);
-
-                //   String srcSelect = listView.getSelectedItem().toString();
-                // String srcSelect = ((TextView)view).getText().toString();
-                srcSelect = ((TextView)view).getText().toString();
-
-                //Toast.makeText(getApplicationContext(),
-                //"Position :" + itemPosition + "  ListItem : " + itemValue, Toast.LENGTH_LONG).show();
-
-                Intent intent_5 = new Intent(SourceActivity.this, DestinationActivity.class);
-                intent_5.putExtra("src", srcSelect);
-                startActivity(intent_5);
-
-
+            public void onFailure(Call<SourceList> call, Throwable t) {
+                Toast.makeText(SourceActivity.this, "Invalid Mobile Number/Password", Toast.LENGTH_SHORT).show();
             }
-
-
         });
+
 
         DrawerLayout drawer = (DrawerLayout) findViewById(R.id.drawer_layout);
         ActionBarDrawerToggle toggle = new ActionBarDrawerToggle(
@@ -141,14 +119,6 @@ public class SourceActivity extends AppCompatActivity implements NavigationView.
                     Toast.LENGTH_SHORT).show();
         }
         back_pressed = System.currentTimeMillis();
-
-
-        /*Intent startMain = new Intent(Intent.ACTION_MAIN);
-        startMain.addCategory(Intent.CATEGORY_HOME);
-        startMain.setFlags(Intent.FLAG_ACTIVITY_NEW_TASK);
-        startActivity(startMain);
-        finish();
-        System.exit(0);*/
 
         Intent intent = new Intent(SourceActivity.this, LoginActivity.class);
         intent.addFlags(Intent.FLAG_ACTIVITY_CLEAR_TOP);

@@ -41,9 +41,6 @@ public class DestinationActivity extends AppCompatActivity implements Navigation
         Toolbar toolbar = (Toolbar) findViewById(R.id.toolbar);
         setSupportActionBar(toolbar);
 
-        Intent intent = getIntent();
-        final String src = intent.getExtras().getString("src");
-
         listView = (ListView) findViewById(R.id.listView);
         ArrayAdapter<String> adapter = new ArrayAdapter<String>(this, android.R.layout.simple_list_item_1, android.R.id.text1, values);
         listView.setAdapter(adapter);
@@ -69,7 +66,7 @@ public class DestinationActivity extends AppCompatActivity implements Navigation
                 //Toast.makeText(getApplicationContext(),
                 //"Position :" + itemPosition + "  ListItem : " + itemValue, Toast.LENGTH_LONG).show();
                 Intent intent_6 = new Intent(DestinationActivity.this, PlyActivity.class);
-                intent_6.putExtra("src", src);
+                //intent_6.putExtra("src", src);
                 intent_6.putExtra("dest", destSelect);
                 startActivity(intent_6);
 
@@ -93,7 +90,7 @@ public class DestinationActivity extends AppCompatActivity implements Navigation
                 //Toast.makeText(getApplicationContext(),
                 //"Position :" + itemPosition + "  ListItem : " + itemValue, Toast.LENGTH_LONG).show();
                 Intent intent_6 = new Intent(DestinationActivity.this, PlyActivity.class);
-                intent_6.putExtra("src", src);
+                //intent_6.putExtra("src", src);
                 intent_6.putExtra("dest", destSelect);
                 startActivity(intent_6);
 
