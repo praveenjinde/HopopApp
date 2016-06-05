@@ -5,6 +5,9 @@ import android.support.design.widget.NavigationView;
 import android.support.v4.view.GravityCompat;
 import android.support.v4.widget.DrawerLayout;
 import android.support.v7.app.ActionBarDrawerToggle;
+import android.support.v7.widget.DefaultItemAnimator;
+import android.support.v7.widget.LinearLayoutManager;
+import android.support.v7.widget.RecyclerView;
 import android.util.Log;
 import android.view.MenuItem;
 import android.support.v7.app.AppCompatActivity;
@@ -12,6 +15,7 @@ import android.support.v7.widget.Toolbar;
 import android.content.Intent;
 import android.content.pm.ActivityInfo;
 import android.content.res.Configuration;
+import android.view.View;
 import android.widget.ArrayAdapter;
 import android.widget.AutoCompleteTextView;
 import android.widget.ListView;
@@ -26,6 +30,7 @@ import com.hopop.hopop.ply.R;
 import com.hopop.hopop.destination.activity.DestinationActivity;
 import com.hopop.hopop.login.activity.LoginActivity;
 import com.hopop.hopop.response.Registerresponse;
+import com.hopop.hopop.source.RecyclerAdapter;
 import com.hopop.hopop.source.data.SourceList;
 import com.orm.query.Condition;
 import com.orm.query.Select;
@@ -35,6 +40,8 @@ import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.List;
 
+import butterknife.Bind;
+import butterknife.ButterKnife;
 import retrofit2.Call;
 import retrofit2.Callback;
 import retrofit2.Response;
@@ -50,21 +57,26 @@ public class SourceActivity extends AppCompatActivity implements NavigationView.
     private static long back_pressed;
     AutoCompleteTextView search;
 
+    @Bind(R.id.source_list)
+    RecyclerView source_list;
+
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
+
         setTitle(R.string.PickHeader);
         setContentView(R.layout.activity_source);
+        ButterKnife.bind(this);
         toolbar = (Toolbar) findViewById(R.id.toolbar);
         setSupportActionBar(toolbar);
-
         search= (AutoCompleteTextView)findViewById(R.id.autoCompleteTextView);
         search.setThreshold(1);//will start working from first character
-        SourceList sourceList = new SourceList();
-                //sourceList.setStopLocation(listView.getAdapter().toString().trim());
-                Log.d("RANDOM TAG", "on submit button pressed");
         Call<SourceList> sourceList1 = CommunicatorClass.getRegisterClass().groupListSrc();
+        final LinearLayoutManager layoutManager = new LinearLayoutManager(this.getApplicationContext());
+        layoutManager.setOrientation(LinearLayoutManager.VERTICAL);
+        source_list.setLayoutManager(layoutManager);
+        source_list.setItemAnimator(new DefaultItemAnimator());
         sourceList1.enqueue(new Callback<SourceList>() {
             @Override
             public void onResponse(Call<SourceList> call, Response<SourceList> response) {
@@ -79,10 +91,9 @@ public class SourceActivity extends AppCompatActivity implements NavigationView.
                 for(FromRoute frmRout:list1){
                     Log.e(getClass().getSimpleName(),"the db item is "+frmRout);
                 }
-                ArrayAdapter adapter = new ArrayAdapter<String>(getBaseContext(), R.layout.activity_source, list1);
 
+                displayTheList(list1);
                 ListView listView = (ListView) findViewById(R.id.listView);
-                listView.setAdapter(adapter);
 
             }
 
@@ -104,6 +115,20 @@ public class SourceActivity extends AppCompatActivity implements NavigationView.
         navigationView.setNavigationItemSelectedListener(this);
 
     }
+
+    private void displayTheList(final List<FromRoute> fromRoutes){
+        RecyclerAdapter recyclerAdapter = new RecyclerAdapter(fromRoutes,getApplicationContext());
+        source_list.setAdapter(recyclerAdapter);
+        ((RecyclerAdapter)recyclerAdapter).setOnItemClickListener(new RecyclerAdapter.ItemClickListenr() {
+            @Override
+            public void onItemClick(int position, View v) {
+                Log.i(getClass().getSimpleName(),"the item clicked is "+fromRoutes.get(position).getStopLocation());
+
+                //write your on click of an item what has to be done .....
+            }
+        });
+    }
+
     @Override
     public void onBackPressed() {
         DrawerLayout drawer = (DrawerLayout) findViewById(R.id.drawer_layout);

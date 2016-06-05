@@ -1,5 +1,5 @@
 <resources>
-    <string name="app_name">HopOp.V1.0</string>
+    <string name="app_name">HopOp</string>
     <string name="action_settings">Settings</string>
     <string name="title_activity_sign_up">RegisterActivity</string>
     <string name="PickHeader">HOP_IN Point</string>
